@@ -13,7 +13,7 @@ namespace ZenDeskApi
 
         public List<Macro> GetMacros()
         {
-            return GetCollection<Macro>(Macros + ".xml");
+            return GetCollection<Macro>(Macros + ".json");
         }
 
         public bool ApplyMacro(int macroId, int ticketId)
@@ -21,7 +21,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.POST,
-                Resource = string.Format("{0}/{1}/apply.xml", Macros, macroId)
+                Resource = string.Format("{0}/{1}/apply.json", Macros, macroId)
             };
 
             request.AddParameter("ticket_id", ticketId.ToString());

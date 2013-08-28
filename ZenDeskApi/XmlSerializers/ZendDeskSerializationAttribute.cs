@@ -15,6 +15,7 @@
 #endregion
 
 using System;
+using System.Globalization;
 using RestSharp.Extensions;
 
 namespace ZenDeskApi.XmlSerializers
@@ -76,9 +77,9 @@ namespace ZenDeskApi.XmlSerializers
 			var name = Name ?? input;
 			switch (NameStyle) {
 				case NameStyle.CamelCase:
-					return name.ToCamelCase();
+                    return name.ToCamelCase(CultureInfo.InvariantCulture);
 				case NameStyle.PascalCase:
-					return name.ToPascalCase();
+                    return name.ToPascalCase(CultureInfo.InvariantCulture);
 				case NameStyle.LowerCase:
 					return name.ToLower();
 			}

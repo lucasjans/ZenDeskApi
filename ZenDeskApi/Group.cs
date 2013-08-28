@@ -13,7 +13,7 @@ namespace ZenDeskApi
 
         public List<Group> GetGroups()
         {
-            return GetCollection<Group>(Groups + ".xml");
+            return GetCollection<Group>(Groups + ".json");
         }
 
         public Group GetGroupById(int id)
@@ -57,7 +57,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.POST,
-                Resource = Groups + ".xml"
+                Resource = Groups + ".json"
             };
 
             request.AddBody(group);
@@ -76,7 +76,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.PUT,
-                Resource = string.Format("{0}/{1}.xml", Groups, group.Id)
+                Resource = string.Format("{0}/{1}.json", Groups, group.Id)
             };
 
             request.AddBody(group);
@@ -91,7 +91,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.DELETE,
-                Resource = string.Format("{0}/{1}.xml", Groups, groupId)
+                Resource = string.Format("{0}/{1}.json", Groups, groupId)
             };
 
             var res = Execute(request);

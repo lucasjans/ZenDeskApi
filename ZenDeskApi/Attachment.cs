@@ -45,7 +45,7 @@ namespace ZenDeskApi
             if (!requestUrl.EndsWith("/"))
                 requestUrl += "/";
 
-            requestUrl += string.Format("uploads.xml?filename={0}", file.FileName);
+            requestUrl += string.Format("uploads.json?filename={0}", file.FileName);
             if (!string.IsNullOrEmpty(token))
                 requestUrl += string.Format("&token={0}", token);
 

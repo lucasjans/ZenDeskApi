@@ -27,7 +27,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.GET,
-                Resource = string.Format("{0}/{1}.xml", Users, id.ToString())
+                Resource = string.Format("{0}/{1}.json", Users, id.ToString())
             };
 
             return Execute<User>(request);
@@ -98,7 +98,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.POST,
-                Resource = Users + ".xml",
+                Resource = Users + ".json",
             };
 
             request.AddBody(newUser);
@@ -114,7 +114,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.PUT,
-                Resource = string.Format("{0}/{1}.xml", Users, user.Id)
+                Resource = string.Format("{0}/{1}.json", Users, user.Id)
             };
 
             request.AddBody(user);
@@ -130,7 +130,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.DELETE,
-                Resource = string.Format("{0}/{1}.xml", Users, userId)
+                Resource = string.Format("{0}/{1}.json", Users, userId)
             };
 
             var res = Execute(request);
@@ -140,7 +140,7 @@ namespace ZenDeskApi
 
         public List<UserEmailIdentity> GetUserIdentities(int userId)
         {
-            return GetCollection<UserEmailIdentity>(string.Format("{0}/{1}/user_identities.xml", Users, userId)); 
+            return GetCollection<UserEmailIdentity>(string.Format("{0}/{1}/user_identities.json", Users, userId)); 
         }
 
 
@@ -154,7 +154,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.POST,
-                Resource = string.Format("{0}/{1}/user_identities.xml", Users, userId)
+                Resource = string.Format("{0}/{1}/user_identities.json", Users, userId)
             };
 
             request.AddParameter("text/xml", string.Format("<email>{0}</email>", email), ParameterType.RequestBody);
@@ -181,7 +181,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.POST,
-                Resource = string.Format("{0}/{1}/user_identities.xml", Users, userId)
+                Resource = string.Format("{0}/{1}/user_identities.json", Users, userId)
             };
 
             request.AddParameter("text/xml", string.Format("<twitter>{0}</twitter>", twitterHandle), ParameterType.RequestBody);

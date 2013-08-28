@@ -24,7 +24,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.GET,
-                Resource = string.Format("{0}/{1}.xml", Tickets, id)
+                Resource = string.Format("{0}/{1}.json", Tickets, id)
             };
 
             return Execute<Ticket>(request);
@@ -83,7 +83,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.GET,
-                Resource = string.Format("rules/{0}.xml", viewId)
+                Resource = string.Format("rules/{0}.json", viewId)
             };
 
             request.AddParameter("page", page.ToString());
@@ -189,7 +189,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.PUT,
-                Resource = string.Format("{0}/{1}.xml", Tickets, ticketId)
+                Resource = string.Format("{0}/{1}.json", Tickets, ticketId)
             };
             request.AddBody(comment);
 
@@ -203,7 +203,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
                               {
                                   Method = Method.DELETE,
-                                  Resource = string.Format("{0}/{1}.xml", Tickets, ticketId.ToString())
+                                  Resource = string.Format("{0}/{1}.json", Tickets, ticketId.ToString())
                               };
 
             var res = Execute(request);
@@ -246,7 +246,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.PUT,
-                Resource = string.Format("{0}/{1}.xml", Tickets, ticket.NiceId.ToString())
+                Resource = string.Format("{0}/{1}.json", Tickets, ticket.NiceId.ToString())
             };
 
             request.AddBody(ticket);
@@ -268,7 +268,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.PUT,
-                Resource = string.Format("{0}/{1}.xml", Requests, ticketId.ToString())
+                Resource = string.Format("{0}/{1}.json", Requests, ticketId.ToString())
             };
 
             request.AddHeader(XOnBehalfOfEmail, email);
@@ -286,7 +286,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.DELETE,
-                Resource = string.Format("{0}/{1}.xml", Requests, requestId.ToString())
+                Resource = string.Format("{0}/{1}.json", Requests, requestId.ToString())
             };
 
             var res = Execute(request);

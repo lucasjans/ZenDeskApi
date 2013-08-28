@@ -18,7 +18,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.GET,
-                Resource = string.Format("forums/{0}/{1}.xml", forumId, Entries)
+                Resource = string.Format("forums/{0}/{1}.json", forumId, Entries)
             };
 
             return Execute<List<Entry>>(request);
@@ -29,7 +29,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.GET,
-                Resource = string.Format("{0}/{1}.xml", Entries, id)
+                Resource = string.Format("{0}/{1}.json", Entries, id)
             };
 
             return Execute<Entry>(request);
@@ -55,7 +55,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.POST,
-                Resource = Entries + ".xml"
+                Resource = Entries + ".json"
             };
 
             request.AddBody(entry);
@@ -70,7 +70,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.PUT,
-                Resource = string.Format("{0}/{1}.xml", Entries, entry.Id)
+                Resource = string.Format("{0}/{1}.json", Entries, entry.Id)
             };
 
             request.AddBody(entry);
@@ -85,7 +85,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.DELETE,
-                Resource = string.Format("{0}/{1}.xml", Entries, entryId)
+                Resource = string.Format("{0}/{1}.json", Entries, entryId)
             };
 
             var res = Execute(request);
@@ -129,7 +129,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.PUT,
-                Resource = string.Format("{0}/{1}.xml", Posts, post.Id)
+                Resource = string.Format("{0}/{1}.json", Posts, post.Id)
             };
 
             request.AddBody(post);
@@ -144,7 +144,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.DELETE,
-                Resource = string.Format("{0}/{1}.xml", Posts, postId)
+                Resource = string.Format("{0}/{1}.json", Posts, postId)
             };
 
             var res = Execute(request);

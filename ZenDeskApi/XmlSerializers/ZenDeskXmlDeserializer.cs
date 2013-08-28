@@ -30,6 +30,11 @@ namespace ZenDeskApi.XmlSerializers
 {
     public class ZenDeskXmlDeserializer : IDeserializer
     {
+        public T Deserialize<T>(IRestResponse response)
+        {
+            throw new NotImplementedException();
+        }
+
         public string RootElement { get; set; }
         public string Namespace { get; set; }
         public string DateFormat { get; set; }
@@ -318,7 +323,7 @@ namespace ZenDeskApi.XmlSerializers
         private XElement GetElementByName(XElement root, XName name)
         {
             var lowerName = XName.Get(name.LocalName.ToLower(), name.NamespaceName);
-            var camelName = XName.Get(name.LocalName.ToCamelCase(), name.NamespaceName);
+            var camelName = XName.Get(name.LocalName.ToCamelCase(CultureInfo.InvariantCulture), name.NamespaceName);
             var dashName = XName.Get(name.LocalName.AddDashes().ToLower(), name.NamespaceName);
 
             if (root.Element(name) != null)
@@ -365,7 +370,7 @@ namespace ZenDeskApi.XmlSerializers
         IEnumerable<XElement> GetDescendentsByName(XElement root, XName name)
         {            
             var lowerName = XName.Get(name.LocalName.ToLower(), name.NamespaceName);
-            var camelName = XName.Get(name.LocalName.ToCamelCase(), name.NamespaceName);
+            var camelName = XName.Get(name.LocalName.ToCamelCase(CultureInfo.InvariantCulture), name.NamespaceName);
             var dashName = XName.Get(name.LocalName.AddDashes().ToLower(), name.NamespaceName);
 
             var descendants = root.Descendants(name);
@@ -391,7 +396,7 @@ namespace ZenDeskApi.XmlSerializers
         private XAttribute GetAttributeByName(XElement root, XName name)
         {
             var lowerName = XName.Get(name.LocalName.ToLower(), name.NamespaceName);
-            var camelName = XName.Get(name.LocalName.ToCamelCase(), name.NamespaceName);
+            var camelName = XName.Get(name.LocalName.ToCamelCase(CultureInfo.InvariantCulture), name.NamespaceName);
             var dashName = XName.Get(name.LocalName.AddDashes().ToLower(), name.NamespaceName);
 
             if (root.Attribute(name) != null)

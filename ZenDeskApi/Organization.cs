@@ -21,7 +21,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.GET,
-                Resource = string.Format("{0}/{1}.xml", _organizations, id)
+                Resource = string.Format("{0}/{1}.json", _organizations, id)
             };
 
             return Execute<Organization>(request);            
@@ -51,7 +51,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.POST,
-                Resource = _organizations + ".xml"
+                Resource = _organizations + ".json"
             };
 
             request.AddBody(newOrg);
@@ -66,7 +66,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.PUT,
-                Resource = string.Format("{0}/{1}.xml", _organizations, org.Id)
+                Resource = string.Format("{0}/{1}.json", _organizations, org.Id)
             };
 
             request.AddBody(org);
@@ -81,7 +81,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.DELETE,
-                Resource = string.Format("{0}/{1}.xml", _organizations, orgId)
+                Resource = string.Format("{0}/{1}.json", _organizations, orgId)
             };
 
             var res = Execute(request);

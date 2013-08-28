@@ -14,7 +14,7 @@ namespace ZenDeskApi
 
         public List<Forum> GetForums()
         {
-            return GetCollection<Forum>(_forums + ".xml");
+            return GetCollection<Forum>(_forums + ".json");
         }
 
         public Forum GetForumById(int id)
@@ -22,7 +22,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.GET,
-                Resource = string.Format("{0}/{1}.xml", _forums, id)
+                Resource = string.Format("{0}/{1}.json", _forums, id)
             };
 
             return Execute<Forum>(request);
@@ -76,7 +76,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
                               {
                                   Method = Method.POST,
-                                  Resource = _forums + ".xml"
+                                  Resource = _forums + ".json"
                               };
             request.AddBody(forum);
 
@@ -90,7 +90,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.PUT,
-                Resource = string.Format("{0}/{1}.xml", _forums, forum.Id)
+                Resource = string.Format("{0}/{1}.json", _forums, forum.Id)
             };
 
             request.AddBody(forum);
@@ -105,7 +105,7 @@ namespace ZenDeskApi
             var request = new ZenRestRequest
             {
                 Method = Method.DELETE,
-                Resource = string.Format("{0}/{1}.xml", _forums, forumId)
+                Resource = string.Format("{0}/{1}.json", _forums, forumId)
             };
 
             var res = Execute(request);

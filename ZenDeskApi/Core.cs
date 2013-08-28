@@ -34,8 +34,9 @@ namespace ZenDeskApi
 
             _client = new RestClient(yourZenDeskUrl);
             _client.Authenticator = new HttpBasicAuthenticator(user, password);
-            _client.AddHandler("application/xml; charset=utf-8", new ZenDeskXmlDeserializer());
-            _client.AddHandler("application/xml", new ZenDeskXmlDeserializer());                        
+            //_client.
+            //_client.AddHandler("application/xml; charset=utf-8", new ZenDeskXmlDeserializer());
+            //_client.AddHandler("application/xml", new ZenDeskXmlDeserializer());                        
         }
          
 
@@ -45,7 +46,7 @@ namespace ZenDeskApi
 			return response.Data;
 		}
 
-        public RestResponse Execute(ZenRestRequest request)
+        public IRestResponse Execute(ZenRestRequest request)
 		{
 			var res = _client.Execute(request);
             ValidateZenDeskRestResponse(res);
@@ -124,8 +125,8 @@ namespace ZenDeskApi
         /// <returns></returns>
         public List<T> GetCollection<T>(string resource, string rootElement="")
         {
-            if (!resource.EndsWith(".xml"))
-                resource += ".xml";
+            if (!resource.EndsWith(".json"))
+                resource += ".json";
 
             var request = new ZenRestRequest
             {
@@ -137,7 +138,7 @@ namespace ZenDeskApi
             return Execute<List<T>>(request);
         }
 
-        protected void ValidateZenDeskRestResponse(RestResponse response)
+        protected void ValidateZenDeskRestResponse(IRestResponse response)
         {
             if(response.StatusCode == System.Net.HttpStatusCode.NotAcceptable)
             {
@@ -155,7 +156,7 @@ namespace ZenDeskApi
             }
         }
 
-        private int GetIdFromLocationHeader(RestResponse res)
+        private int GetIdFromLocationHeader(IRestResponse res)
         {
             int id = -1;
 
@@ -163,7 +164,7 @@ namespace ZenDeskApi
             if(h.Count() > 0)
             {
                 string[] userUrl = h.First().Value.ToString().Split('/');
-                string idString = userUrl.Last().Replace(".xml", "").Split('-').First();
+                string idString = userUrl.Last().Replace(".json", "").Split('-').First();
                                 
                 int.TryParse(idString, out id);                
             }
